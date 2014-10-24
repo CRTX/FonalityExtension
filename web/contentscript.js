@@ -1,21 +1,27 @@
 var Observer = new MutationObserver(function(mutations) {
-    var bg = $(mutations).find(".AvatarForeground").css('background-image');
-    bg = bg.replace('url(','').replace(')','');
-    console.log(bg);
-    $(mutations).each(function() {
+    mutations.forEach(function(mutation) {
+        var isMessage = $(mutation.target).hasClass("ListMessageText");
+        if (isMessage) {
+            var newMessage = $(mutation.target).text();
+            chrome.runtime.sendMessage(
+                {
+                    plugin: "Fonality",
+                    title: "New Message",
+                    message: newMessage
+                },
+                function(response) {
+                    console.log(response);
+                });
+        }
     });
 });
 
-setTimeout(function() {
-var Notifications = $(".LeftSideBarSectionBody")[1];
+$(".fj-scroll-content").load(function() {;
+    var Notifications = $(".fj-scroll-content")[2];
     Observer.observe(Notifications, {
         attributes: true,
         childList: true,
         characterData: true,
         subtree: true
     });
-}, 7000);
-
-chrome.runtime.sendMessage({plugin: "Fonality", title: "New Message", message: "testing"}, function(response) {
-	console.log(response);
 });
