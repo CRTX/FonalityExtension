@@ -5,17 +5,23 @@
     "permissions": [
         "notifications"
     ],
+    "background": {
+        "scripts": ["background.js"]
+    },
     "content_scripts": [
         {
             "matches": [
-                "http://*.fonality.com/*",
-                "http://www.fonality.com/*",
-                "https://www.fonality.com/*",
                 "https://*.fonality.com/*"
             ],
-            "js": ["main.js"],
+            "js": [
+                "bower_components/jquery/dist/jquery.min.js",
+                "contentscript.js"
+            ],
             "run_at": "document_end"
         }
+    ],
+    "web_accessible_resources": [
+        "bower_components/jquery/dist/jquery.min.map"
     ],
     "manifest_version": 2
 }
