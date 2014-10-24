@@ -1,0 +1,6 @@
+name: FonalityPlugin
+description: Fonality functions
+dependencies:
+    chrome: any
+transformers:
+    - chrome

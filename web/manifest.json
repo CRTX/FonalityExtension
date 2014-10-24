@@ -1,0 +1,21 @@
+{
+    "name": "Fonality Plugin",
+    "description": "Because Fonality is lazy.",
+    "version": "0.1",
+    "permissions": [
+        "notifications"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*.fonality.com/*",
+                "http://www.fonality.com/*",
+                "https://www.fonality.com/*",
+                "https://*.fonality.com/*"
+            ],
+            "js": ["main.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "manifest_version": 2
+}
